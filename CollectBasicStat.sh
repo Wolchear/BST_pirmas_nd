@@ -22,4 +22,8 @@ zcat ../../references/gencode.vM9.chr_patch_hapl_scaff.basic.annotation.gtf.gz |
 
 trim_galore --length 20 --illumina SRR8985047_1_fastq.gz -o ../
 
-multiqc --ignore /home/bioinformatikai/HW2/outputs/raw_data/*2_fastqc.html /home/bioinformatikai/HW2/outputs/raw_dataputs/raw_data
+multiqc --ignore /home/bioinformatikai/HW2/outputs/raw_data/SRR8985047_2_fastqc.html /home/bioinformatikai/HW2/outputs/raw_data
+
+ multiqc --ignore  SRR8985047_2_fastqc.html /home/bioinformatikai/HW2/outputs/raw_data
+ cp multiqc_report.html ../../code/BST_pirmas_nd
+
