@@ -20,10 +20,10 @@ echo "$R4"
 #3)Calculate the number of protein-coding genes in your genome. 
 zcat ../../references/gencode.vM9.chr_patch_hapl_scaff.basic.annotation.gtf.gz | grep -w "gene" | grep -w "protein_coding"| wc -l
 
-trim_galore --length 20 --illumina SRR8985047_1_fastq.gz -o ../
+#trim_galore --length 20 --illumina SRR8985047_1_fastq.gz -o ../
 
-multiqc --ignore /home/bioinformatikai/HW2/outputs/raw_data/SRR8985047_2_fastqc.html /home/bioinformatikai/HW2/outputs/raw_data
+#multiqc --ignore /home/bioinformatikai/HW2/outputs/raw_data/SRR8985047_2_fastqc.html /home/bioinformatikai/HW2/outputs/raw_data
 
- multiqc --ignore  SRR8985047_2_fastqc.html /home/bioinformatikai/HW2/outputs/raw_data
- cp multiqc_report_4.html ../../code/BST_pirmas_nd
+ #multiqc --ignore  SRR8985047_2_fastqc.html /home/bioinformatikai/HW2/outputs/raw_data
+ #cp multiqc_report_4.html ../../code/BST_pirmas_nd
 
