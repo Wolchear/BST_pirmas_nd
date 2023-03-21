@@ -25,5 +25,5 @@ trim_galore --length 20 --illumina SRR8985047_1_fastq.gz -o ../
 multiqc --ignore /home/bioinformatikai/HW2/outputs/raw_data/SRR8985047_2_fastqc.html /home/bioinformatikai/HW2/outputs/raw_data
 
  multiqc --ignore  SRR8985047_2_fastqc.html /home/bioinformatikai/HW2/outputs/raw_data
- cp multiqc_report_2.html ../../code/BST_pirmas_nd
+ cp multiqc_report_3.html ../../code/BST_pirmas_nd
 
