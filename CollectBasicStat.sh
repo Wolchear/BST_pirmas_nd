@@ -17,6 +17,7 @@ done
 R4=$R2/8
 echo "$R4"
 
+
 #3)Calculate the number of protein-coding genes in your genome. 
 zcat ../../references/gencode.vM9.chr_patch_hapl_scaff.basic.annotation.gtf.gz | grep -w "gene" | grep -w "protein_coding"| wc -l
 
