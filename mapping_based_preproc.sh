@@ -54,20 +54,28 @@ path="../../inputs/trimmed"
 pathForMapped="../../outputs/mapped"
 pathForUnMapped="../../outputs/unmapped"
 pathForSam="../../outputs/samFiles"
-for i in $path/*_1_val_1.fq.gz
-do
-R1=$i
-R2="$path/$(basename $R1 _1_val_1.fq.gz)_2_val_2.fq.gz"
-echo "$pathForSam/$(basename $R1 _1_val_1.fq.gz).sam"
-hisat2 -x $pathToGenomeIndex/$indexGenomeFilesBasename --dta -1 $R1 -2 $R2 -S "$pathForSam/$(basename $R1 _1_val_1.fq.gz).sam"
-done
+#for i in $path/*_1_val_1.fq.gz
+#do
+#R1=$i
+##R2="$path/$(basename $R1 _1_val_1.fq.gz)_2_val_2.fq.gz"
+#echo "$pathForSam/$(basename $R1 _1_val_1.fq.gz).sam"
+#hisat2 -x $pathToGenomeIndex/$indexGenomeFilesBasename --dta -1 $R1 -2 $R2 -S "$pathForSam/$(basename $R1 _1_val_1.fq.gz).sam"
+#done
 
-
+sortedBam="../../outputs/sortedBam"
 for i in $pathForSam/*.sam
 do
-echo $i
-#samtools view -bS $i -@ 6| samtools sort -@ 6 -o "$pathForMapped/$(basename$i).bam"
-#samtools index "$pathForMapped/$(basename$i).bam"
+samtools view -bS $i -@ 6| samtools sort -@ 6 -o "$sortedBam/$(basename $i .sam)_sorted.bam"
 done
 echo "Mapping is done"
 
+deduplicatedBam="../../outputs/deduplicatedBam"
+for i in $sortedBam/*bam
+do
+samtools markdup $i -o "$deduplicatedBam/$(basename $i sorted.bam)deduplicated.bam"
+samtools index "$deduplicatedBam/$(basename $i .sam).bam" -o $pathForMapped/
+done
+
+#for i in $pathForMapped/*.bam
+#do
+#stringtie $i -G ../../references/gencode.vM9.chr_patch_hapl_scaff.basic.annotation.gtf.gz -o ../stringTie/$()
