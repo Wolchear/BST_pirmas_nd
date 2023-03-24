@@ -128,4 +128,7 @@ sample51="SRR8985051_deduplicated.bam"
 sample52="SRR8985052_deduplicated.bam"
 #multiBamSummary bins  --bamfiles "$deduplicatedBam/$sample47" "$deduplicatedBam/$sample48" "$deduplicatedBam/$sample51" "$deduplicatedBam/$sample52" --outFileName "$resultsPawth/mappend.npz" --binSize 1000 -p 4 --outRawCounts "$resultsPawth/raw_counts.tsv"
 
-plotCorrelation -in "$resultsPawth/mappend.npz" -c pearson -p heatmap -o "$resultsPawth/mapped_data_heatmap.pdf"
+plotCorrelation -in "$resultsPawth/mappend.npz" -c pearson -p heatmap -o "$resultsPawth/mapped_data_heatmap_person.pdf"
+plotCorrelation -in "$resultsPawth/mappend.npz" -c spearman -p heatmap -o "$resultsPawth/mapped_data_heatmap_spearman.pdf"
+
+#plotPCA -in "$resultsPawth/mappend.npz" -o "$resultsPawth/mapped_data_heatmap_Pca.pdf"
