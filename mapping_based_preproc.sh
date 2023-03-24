@@ -24,9 +24,8 @@ gunzip $pathToGenomeIndex/GRCm38.p4.genome.fa.gz
 hisat2-build $pathToGenomeIndex/GRCm38.p4.genome.fa  $pathToGenomeIndex/$indexGenomeFilesBasename
 fi
 ## Data QC 
-
+threads=6
 #1) FASTQC analysis on each of FASTQC files.
-#threads=8
 #outputs= ../../outputs/raw_data/
 #mkdir -p ../../outputs/raw_data/
 #fastqc -t $threads ../../inputs/* -o $outputs
@@ -45,7 +44,9 @@ fi
 #done
 #echo "All samples are trimmed"
 
-#multiqc /home/bioinformatikai/HW2/inputs/trimmed/*1_fastqc* -o/home/bioinformatikai/HW2/code/BST_pirmas_nd
+#5)MultiQC for all samples
+#multiqc /home/bioinformatikai/HW2/inputs/trimmed/*_fastqc* -o /home/bioinformatikai/HW2/outputs/multiQC/trimmed/
+#multiqc /home/bioinformatikai/HW2/outputs/raw_data/*_fastqc* -o /home/bioinformatikai/HW2/outputs/multiQC/notTrimmed/
 
 
 #Mapping
@@ -54,6 +55,9 @@ path="../../inputs/trimmed"
 pathForMapped="../../outputs/mapped"
 pathForUnMapped="../../outputs/unmapped"
 pathForSam="../../outputs/samFiles"
+deduplicatedBam="../../outputs/deduplicatedBam"
+sortedBam="../../outputs/sortedBam"
+pathFixmatedBam="../../outputs/fixmateBam"
 #for i in $path/*_1_val_1.fq.gz
 #do
 #R1=$i
@@ -62,20 +66,66 @@ pathForSam="../../outputs/samFiles"
 #hisat2 -x $pathToGenomeIndex/$indexGenomeFilesBasename --dta -1 $R1 -2 $R2 -S "$pathForSam/$(basename $R1 _1_val_1.fq.gz).sam"
 #done
 
-sortedBam="../../outputs/sortedBam"
-for i in $pathForSam/*.sam
-do
-samtools view -bS $i -@ 6| samtools sort -@ 6 -o "$sortedBam/$(basename $i .sam)_sorted.bam"
-done
-echo "Mapping is done"
 
-deduplicatedBam="../../outputs/deduplicatedBam"
-for i in $sortedBam/*bam
-do
-samtools markdup $i -o "$deduplicatedBam/$(basename $i sorted.bam)deduplicated.bam"
-samtools index "$deduplicatedBam/$(basename $i .sam).bam" -o $pathForMapped/
-done
-
-#for i in $pathForMapped/*.bam
+#for i in $pathForSam/*.sam
 #do
-#stringtie $i -G ../../references/gencode.vM9.chr_patch_hapl_scaff.basic.annotation.gtf.gz -o ../stringTie/$()
+#
+#echo "samtools for $i"
+#samtools view -F 4 -bS $i -@ 7 | samtools sort -@ 7 -n -o "$sortedBam/$(basename $i .sam)_Nsorted.bam"
+#done
+#echo "Mapping is done"
+
+#for i in $sortedBam/*bam
+#do
+#echo "index for $i"
+#samtools index -b $i -o "$pathForMapped/"
+#done
+
+#for i in $sortedBam/*bam
+#do
+#echo "fixmate for $i"
+#samtools fixmate -m -@ 6 -O BAM  $i "$pathFixmatedBam/$(basename $i Nsorted.bam)fixmated.bam"
+#done
+
+#for i in $pathFixmatedBam/*bam
+#do
+#echo "Sorting for $i"
+#samtools sort -@ 6 -o "$sortedBam/$(basename $i _fixmated.bam)_Osorted.bam" $i
+#done
+
+
+#for i in $sortedBam/*_Osorted.bam
+#do
+#echo "$deduplicatedBam/$(basename $i Osorted.bam)deduplicated.bam"
+#samtools markdup -r $i "$deduplicatedBam/$(basename $i Osorted.bam)deduplicated.bam"
+#done
+
+#for i in $deduplicatedBam/*bam
+#do
+##echo "index for $i"
+##samtools index -b $i 
+#done
+
+#gunzip ../../references/gencode.vM9.chr_patch_hapl_scaff.basic.annotation.gtf.gz
+pathForStringTie="../../outputs/stringTie"
+#for i in $deduplicatedBam/*.bam
+#do
+#echo "stringTie for $i"
+#if [ ! -d "$pathForStringTie/$(basename $i _deduplicated.bam)" ];
+#then
+ #   mkdir -p "$pathForStringTie/$(basename $i _deduplicated.bam)"
+#    echo "Buvo sukurta $pathForStringTie/$(basename $i _deduplicated.bam)"
+#fi
+#echo "stringTie for $i"
+#stringtie -e -B -G ../../references/gencode.vM9.chr_patch_hapl_scaff.basic.annotation.gtf -o "$pathForStringTie/$(basename $i _deduplicated.bam)/$(basename $i _deduplicated.bam).gtf" $i
+#echo " saved to $pathForStringTie/$(basename $i _deduplicated.bam)/$(basename $i _deduplicated.bam).gtf"
+#done
+
+resultsPawth="../../results"
+sample47="SRR8985047_deduplicated.bam"
+sample48="SRR8985048_deduplicated.bam"
+sample51="SRR8985051_deduplicated.bam"
+sample52="SRR8985052_deduplicated.bam"
+#multiBamSummary bins  --bamfiles "$deduplicatedBam/$sample47" "$deduplicatedBam/$sample48" "$deduplicatedBam/$sample51" "$deduplicatedBam/$sample52" --outFileName "$resultsPawth/mappend.npz" --binSize 1000 -p 4 --outRawCounts "$resultsPawth/raw_counts.tsv"
+
+plotCorrelation -in "$resultsPawth/mappend.npz" -c pearson -p heatmap -o "$resultsPawth/mapped_data_heatmap.pdf"

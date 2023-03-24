@@ -27,4 +27,3 @@ zcat ../../references/gencode.vM9.chr_patch_hapl_scaff.basic.annotation.gtf.gz |
 
  #multiqc --ignore  SRR8985047_2_fastqc.html /home/bioinformatikai/HW2/outputs/raw_data
  #cp multiqc_report_4.html ../../code/BST_pirmas_nd
-
