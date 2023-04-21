@@ -1,5 +1,0 @@
-Module	Section	Sample Name	Source
-FastQC	all_sections	SRR8985047_1_val_1	/home/bioinformatikai/HW2/inputs/trimmed/SRR8985047_1_val_1_fastqc.zip
-FastQC	all_sections	SRR8985048_1_val_1	/home/bioinformatikai/HW2/inputs/trimmed/SRR8985048_1_val_1_fastqc.zip
-FastQC	all_sections	SRR8985051_1_val_1	/home/bioinformatikai/HW2/inputs/trimmed/SRR8985051_1_val_1_fastqc.zip
-FastQC	all_sections	SRR8985052_1_val_1	/home/bioinformatikai/HW2/inputs/trimmed/SRR8985052_1_val_1_fastqc.zip

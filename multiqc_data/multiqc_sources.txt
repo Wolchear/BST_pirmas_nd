@@ -1,5 +1,0 @@
-Module	Section	Sample Name	Source
-FastQC	all_sections	SRR8985047_1	/home/bioinformatikai/HW2/outputs/raw_data/SRR8985047_1_fastqc.zip
-FastQC	all_sections	SRR8985048_1	/home/bioinformatikai/HW2/outputs/raw_data/SRR8985048_1_fastqc.zip
-FastQC	all_sections	SRR8985051_1	/home/bioinformatikai/HW2/outputs/raw_data/SRR8985051_1_fastqc.zip
-FastQC	all_sections	SRR8985052_1	/home/bioinformatikai/HW2/outputs/raw_data/SRR8985052_1_fastqc.zip

@@ -26,27 +26,27 @@ fi
 # Data QC 
 threads=6
 #1) FASTQC analysis on each of FASTQC files.
-outputs= ../../outputs/raw_data/
-mkdir -p ../../outputs/raw_data/
-fastqc -t $threads ../../inputs/* -o $outputs
+#outputs= ../../outputs/raw_data/
+#mkdir -p ../../outputs/raw_data/
+#fastqc -t $threads ../../inputs/* -o $outputs
 
 
 #2) Generate MultiQc for '1' samples
-multiqc /home/bioinformatikai/HW2/outputs/raw_data/*1_fastqc* -o /home/bioinformatikai/HW2/outputs/raw_data/
+#multiqc /home/bioinformatikai/HW2/outputs/raw_data/*1_fastqc* -o /home/bioinformatikai/HW2/outputs/raw_data/
 
 #3) + 4)
-mkdir -p ../../inputs/trimmed
-for i in ../../inputs/*1.fastq.gz
-do
-R1=$i
-R2="../../inputs/$(basename $R1 1.fastq.gz)2.fastq.gz"
-trim_galore -paired $R1 $R2 --fastqc -o ../../inputs/trimmed/ --length 20 -q 20 --stringency 3 
-done
-echo "All samples are trimmed"
+#mkdir -p ../../inputs/trimmed
+#for i in ../../inputs/*1.fastq.gz
+#do
+#R1=$i
+#R2="../../inputs/$(basename $R1 1.fastq.gz)2.fastq.gz"
+#trim_galore -paired $R1 $R2 --fastqc -o ../../inputs/trimmed/ --length 20 -q 20 --stringency 3 
+#done
+#echo "All samples are trimmed"
 
 #5)MultiQC for all samples
-multiqc /home/bioinformatikai/HW2/inputs/trimmed/*_fastqc* -o /home/bioinformatikai/HW2/outputs/multiQC/trimmed/
-multiqc /home/bioinformatikai/HW2/outputs/raw_data/*_fastqc* -o /home/bioinformatikai/HW2/outputs/multiQC/notTrimmed/
+#multiqc /home/bioinformatikai/HW2/inputs/trimmed/*_fastqc* -o /home/bioinformatikai/HW2/outputs/multiQC/trimmed/
+#multiqc /home/bioinformatikai/HW2/outputs/raw_data/*_fastqc* -o /home/bioinformatikai/HW2/outputs/multiQC/notTrimmed/
 
 
 #Mapping
@@ -58,13 +58,13 @@ pathForSam="../../outputs/samFiles"
 deduplicatedBam="../../outputs/deduplicatedBam"
 sortedBam="../../outputs/sortedBam"
 pathFixmatedBam="../../outputs/fixmateBam"
-for i in $path/*_1_val_1.fq.gz
-do
-R1=$i
-R2="$path/$(basename $R1 _1_val_1.fq.gz)_2_val_2.fq.gz"
-echo "$pathForSam/$(basename $R1 _1_val_1.fq.gz).sam"
-hisat2 -x $pathToGenomeIndex/$indexGenomeFilesBasename --dta -1 $R1 -2 $R2 -S "$pathForSam/$(basename $R1 _1_val_1.fq.gz).sam"
-done
+#for i in $path/*_1_val_1.fq.gz
+#do
+#R1=$i
+#R2="$path/$(basename $R1 _1_val_1.fq.gz)_2_val_2.fq.gz"
+#echo "$pathForSam/$(basename $R1 _1_val_1.fq.gz).sam"
+#hisat2 -x $pathToGenomeIndex/$indexGenomeFilesBasename --dta -1 $R1 -2 $R2 -S "$pathForSam/$(basename $R1 _1_val_1.fq.gz).sam"
+#done
 
 
 for i in $pathForSam/*.sam
