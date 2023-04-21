@@ -7,5 +7,6 @@
     "output": "../../outputs/salmonQa/SRR8985047",
     "validateMappings": [],
     "geneMap": "../../reference/merge.gtf",
+    "useVBOpt": [],
     "auxDir": "aux_info"
 }

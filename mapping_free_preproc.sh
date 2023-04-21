@@ -48,5 +48,5 @@ for i in ../../inputs/trimmed/*_1_val_1.fq.gz
 do
 R1=$i
 R2="../../inputs/trimmed/$(basename $i _1_val_1.fq.gz)_2_val_2.fq.gz"
-salmon quant -i $dir -l A -1 $R1 -2 $R2 -o ../../outputs/salmonQa/$(basename $R1 _1_val_1.fq.gz) --validateMappings --geneMap ../../reference/merge.gtf
+salmon quant -i $dir -l A -1 $R1 -2 $R2 -o ../../outputs/salmonQa/$(basename $R1 _1_val_1.fq.gz) --validateMappings --geneMap ../../reference/merge.gtf --useVBOpt
 done

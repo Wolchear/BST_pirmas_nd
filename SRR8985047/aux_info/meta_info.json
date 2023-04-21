@@ -8,8 +8,8 @@
         "ISR"
     ],
     "frag_dist_length": 1001,
-    "frag_length_mean": 189.17775750104694,
-    "frag_length_sd": 65.95228745513468,
+    "frag_length_mean": 189.1592823802606,
+    "frag_length_sd": 66.02549556085507,
     "seq_bias_correct": false,
     "gc_bias_correct": false,
     "num_bias_bins": 4096,
@@ -17,7 +17,7 @@
     "keep_duplicates": false,
     "num_valid_targets": 113612,
     "num_decoy_targets": 0,
-    "num_eq_classes": 300525,
+    "num_eq_classes": 300514,
     "serialized_eq_classes": false,
     "eq_class_properties": [
         "range_factorized",
@@ -38,13 +38,13 @@
     "index_decoy_name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "num_bootstraps": 0,
     "num_processed": 46312600,
-    "num_mapped": 38867271,
+    "num_mapped": 38867274,
     "num_decoy_fragments": 0,
     "num_dovetail_fragments": 501256,
     "num_fragments_filtered_vm": 2211736,
     "num_alignments_below_threshold_for_mapped_fragments_vm": 44651781,
-    "percent_mapped": 83.92375077192817,
+    "percent_mapped": 83.92375724964697,
     "call": "quant",
-    "start_time": "Fri Apr 21 22:57:52 2023",
-    "end_time": "Fri Apr 21 23:02:14 2023"
+    "start_time": "Fri Apr 21 23:35:40 2023",
+    "end_time": "Fri Apr 21 23:40:02 2023"
 }
