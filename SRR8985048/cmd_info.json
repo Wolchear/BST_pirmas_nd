@@ -1,0 +1,9 @@
+{
+    "salmon_version": "1.4.0",
+    "index": "../../references/transc_index",
+    "libType": "A",
+    "mates1": "../../inputs/trimmed/SRR8985048_1_val_1.fq.gz",
+    "mates2": "../../inputs/trimmed/SRR8985048_2_val_2.fq.gz",
+    "output": "../../outputs/salmonQa/SRR8985048",
+    "auxDir": "aux_info"
+}
