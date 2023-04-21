@@ -39,10 +39,14 @@ dir="../../references/transc_index"
 #echo "All samples are trimmed"
 
 #gffread -E ../../references/gencode.vM9.chr_patch_hapl_scaff.basic.annotation.gtf -o  ../../references/transcripts.gtf
+deduplicatedBam="../../outputs/deduplicatedBam"
+pathForStringTie="../../outputs/stringTie"
+#stringtie --merge $pathForStringTie/SRR8985047/SRR8985047.gtf $pathForStringTie/SRR8985048/SRR8985048.gtf $pathForStringTie/SRR8985051/SRR8985051.gtf $pathForStringTie/SRR8985052/SRR8985052.gtf -o ../../reference/merge.gtf -c 3
+
 
 for i in ../../inputs/trimmed/*_1_val_1.fq.gz
 do
 R1=$i
 R2="../../inputs/trimmed/$(basename $i _1_val_1.fq.gz)_2_val_2.fq.gz"
-salmon quant -g ../../references/transcripts.gtf -i $dir -l A -1 $R1 -2 $R2 -o ../../outputs/salmonQa/$(basename $R1 _1_val_1.fq.gz)
+salmon quant -i $dir -l A -1 $R1 -2 $R2 -o ../../outputs/salmonQa/$(basename $R1 _1_val_1.fq.gz) --validateMappings --geneMap ../../reference/merge.gtf
 done

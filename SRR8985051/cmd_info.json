@@ -1,10 +1,11 @@
 {
     "salmon_version": "1.4.0",
-    "geneMap": "../../references/transcripts.gtf",
     "index": "../../references/transc_index",
     "libType": "A",
     "mates1": "../../inputs/trimmed/SRR8985051_1_val_1.fq.gz",
     "mates2": "../../inputs/trimmed/SRR8985051_2_val_2.fq.gz",
     "output": "../../outputs/salmonQa/SRR8985051",
+    "validateMappings": [],
+    "geneMap": "../../reference/merge.gtf",
     "auxDir": "aux_info"
 }
