@@ -8,8 +8,8 @@
         "ISR"
     ],
     "frag_dist_length": 1001,
-    "frag_length_mean": 189.16565447405788,
-    "frag_length_sd": 66.03215738123653,
+    "frag_length_mean": 189.15232175361153,
+    "frag_length_sd": 65.9655714057453,
     "seq_bias_correct": false,
     "gc_bias_correct": false,
     "num_bias_bins": 4096,
@@ -17,7 +17,7 @@
     "keep_duplicates": false,
     "num_valid_targets": 113612,
     "num_decoy_targets": 0,
-    "num_eq_classes": 300545,
+    "num_eq_classes": 300459,
     "serialized_eq_classes": false,
     "eq_class_properties": [
         "range_factorized",
@@ -45,6 +45,6 @@
     "num_alignments_below_threshold_for_mapped_fragments_vm": 44651781,
     "percent_mapped": 83.92374645344896,
     "call": "quant",
-    "start_time": "Thu Apr 20 19:57:36 2023",
-    "end_time": "Thu Apr 20 20:02:38 2023"
+    "start_time": "Fri Apr 21 22:03:31 2023",
+    "end_time": "Fri Apr 21 22:07:57 2023"
 }
